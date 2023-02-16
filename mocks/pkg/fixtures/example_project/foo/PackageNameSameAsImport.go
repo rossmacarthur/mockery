@@ -28,15 +28,14 @@ func (_m *PackageNameSameAsImport) NewClient() foo.Client {
 	return r0
 }
 
-type mockConstructorTestingTNewPackageNameSameAsImport interface {
+// NewPackageNameSameAsImport creates a new instance of PackageNameSameAsImport. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewPackageNameSameAsImport(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewPackageNameSameAsImport creates a new instance of PackageNameSameAsImport. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewPackageNameSameAsImport(t mockConstructorTestingTNewPackageNameSameAsImport) *PackageNameSameAsImport {
+}, expectedCalls ...*mock.Call) *PackageNameSameAsImport {
 	mock := &PackageNameSameAsImport{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

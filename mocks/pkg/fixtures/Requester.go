@@ -30,15 +30,14 @@ func (_m *Requester) Get(path string) (string, error) {
 	return r0, r1
 }
 
-type mockConstructorTestingTNewRequester interface {
+// NewRequester creates a new instance of Requester. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewRequester(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewRequester creates a new instance of Requester. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewRequester(t mockConstructorTestingTNewRequester) *Requester {
+}, expectedCalls ...*mock.Call) *Requester {
 	mock := &Requester{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

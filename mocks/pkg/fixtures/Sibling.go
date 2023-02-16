@@ -14,15 +14,14 @@ func (_m *Sibling) DoSomething() {
 	_m.Called()
 }
 
-type mockConstructorTestingTNewSibling interface {
+// NewSibling creates a new instance of Sibling. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewSibling(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewSibling creates a new instance of Sibling. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewSibling(t mockConstructorTestingTNewSibling) *Sibling {
+}, expectedCalls ...*mock.Call) *Sibling {
 	mock := &Sibling{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

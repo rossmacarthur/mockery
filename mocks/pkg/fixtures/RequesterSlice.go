@@ -32,15 +32,14 @@ func (_m *RequesterSlice) Get(path string) ([]string, error) {
 	return r0, r1
 }
 
-type mockConstructorTestingTNewRequesterSlice interface {
+// NewRequesterSlice creates a new instance of RequesterSlice. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewRequesterSlice(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewRequesterSlice creates a new instance of RequesterSlice. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewRequesterSlice(t mockConstructorTestingTNewRequesterSlice) *RequesterSlice {
+}, expectedCalls ...*mock.Call) *RequesterSlice {
 	mock := &RequesterSlice{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

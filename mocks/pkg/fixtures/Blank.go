@@ -23,15 +23,14 @@ func (_m *Blank) Create(x interface{}) error {
 	return r0
 }
 
-type mockConstructorTestingTNewBlank interface {
+// NewBlank creates a new instance of Blank. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewBlank(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewBlank creates a new instance of Blank. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewBlank(t mockConstructorTestingTNewBlank) *Blank {
+}, expectedCalls ...*mock.Call) *Blank {
 	mock := &Blank{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

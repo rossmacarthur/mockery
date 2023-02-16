@@ -119,15 +119,14 @@ func (_c *RequesterReturnElided_Put_Call) Return(_a0 int, err error) *RequesterR
 	return _c
 }
 
-type mockConstructorTestingTNewRequesterReturnElided interface {
+// NewRequesterReturnElided creates a new instance of RequesterReturnElided. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewRequesterReturnElided(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewRequesterReturnElided creates a new instance of RequesterReturnElided. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewRequesterReturnElided(t mockConstructorTestingTNewRequesterReturnElided) *RequesterReturnElided {
+}, expectedCalls ...*mock.Call) *RequesterReturnElided {
 	mock := &RequesterReturnElided{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

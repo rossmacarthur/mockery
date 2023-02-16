@@ -29,15 +29,14 @@ func (_m *RequesterIface) Get() io.Reader {
 	return r0
 }
 
-type mockConstructorTestingTNewRequesterIface interface {
+// NewRequesterIface creates a new instance of RequesterIface. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewRequesterIface(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewRequesterIface creates a new instance of RequesterIface. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewRequesterIface(t mockConstructorTestingTNewRequesterIface) *RequesterIface {
+}, expectedCalls ...*mock.Call) *RequesterIface {
 	mock := &RequesterIface{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

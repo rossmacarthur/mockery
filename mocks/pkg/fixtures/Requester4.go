@@ -14,15 +14,14 @@ func (_m *Requester4) Get() {
 	_m.Called()
 }
 
-type mockConstructorTestingTNewRequester4 interface {
+// NewRequester4 creates a new instance of Requester4. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewRequester4(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewRequester4 creates a new instance of Requester4. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewRequester4(t mockConstructorTestingTNewRequester4) *Requester4 {
+}, expectedCalls ...*mock.Call) *Requester4 {
 	mock := &Requester4{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

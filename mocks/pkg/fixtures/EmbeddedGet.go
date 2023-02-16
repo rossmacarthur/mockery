@@ -26,15 +26,14 @@ func (_m *EmbeddedGet[T]) Get() T {
 	return r0
 }
 
-type mockConstructorTestingTNewEmbeddedGet interface {
+// NewEmbeddedGet creates a new instance of EmbeddedGet. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewEmbeddedGet[T constraints.Signed](t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewEmbeddedGet creates a new instance of EmbeddedGet. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewEmbeddedGet[T constraints.Signed](t mockConstructorTestingTNewEmbeddedGet) *EmbeddedGet[T] {
+}, expectedCalls ...*mock.Call) *EmbeddedGet[T] {
 	mock := &EmbeddedGet[T]{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 

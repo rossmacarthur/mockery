@@ -23,15 +23,14 @@ func (_m *GoGenerateExample) Foo(s string) error {
 	return r0
 }
 
-type mockConstructorTestingTNewGoGenerateExample interface {
+// NewGoGenerateExample creates a new instance of GoGenerateExample. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
+func NewGoGenerateExample(t interface {
 	mock.TestingT
 	Cleanup(func())
-}
-
-// NewGoGenerateExample creates a new instance of GoGenerateExample. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
-func NewGoGenerateExample(t mockConstructorTestingTNewGoGenerateExample) *GoGenerateExample {
+}, expectedCalls ...*mock.Call) *GoGenerateExample {
 	mock := &GoGenerateExample{}
 	mock.Mock.Test(t)
+	mock.ExpectedCalls = expectedCalls
 
 	t.Cleanup(func() { mock.AssertExpectations(t) })
 
